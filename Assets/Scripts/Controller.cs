@@ -24,6 +24,8 @@ public class Controller : MonoBehaviour
     private bool canBlink = true;
     private bool canNoBlink = true;
 
+    private Image bg;
+
     private TextMeshProUGUI tm;
 
     void Start()
@@ -35,6 +37,8 @@ public class Controller : MonoBehaviour
 
         tm = GameObject.Find("Feedback").GetComponent<TextMeshProUGUI>();
         tm.enabled = false;
+        bg = GameObject.Find("BG").GetComponent<Image>();
+        bg.color = Color.gray;
         addToOrder();
         currentButton = order.ElementAt(0);
     }
@@ -46,6 +50,7 @@ public class Controller : MonoBehaviour
             sequenceComplete = true;
             awaitingInput = true;
             buttonCount = 0;
+            bg.color = Color.white;
         }
 
         if (!sequenceComplete)
@@ -109,6 +114,7 @@ public class Controller : MonoBehaviour
 
     private IEnumerator ojTakByczq()
     {
+        bg.color = Color.gray;
         yield return new WaitForSeconds(byczqTime);
         addToOrder();
         buttonCount = 0;
@@ -119,6 +125,7 @@ public class Controller : MonoBehaviour
     private IEnumerator ojNieByczQ()
     {
         tm.enabled = true;
+        bg.color = Color.gray;
         yield return new WaitForSeconds(byczqTime);
         tm.enabled = false;
         order.Clear();
