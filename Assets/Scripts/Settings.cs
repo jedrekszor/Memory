@@ -7,11 +7,14 @@ public class Settings : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        Debug.Log(colorBlindMode);
+        Debug.Log(parkinsonsMode);
+        Debug.Log(muteMode);
     }
 
-    private static bool colorBlindMode = true;
-    private static bool parkinsonsMode = true;
-    private static bool muteMode = true;
+    private static bool colorBlindMode = false;
+    private static bool parkinsonsMode = false;
+    private static bool muteMode = false;
 
     public static bool ColorBlindMode
     {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
@@ -153,5 +154,10 @@ public class Controller : MonoBehaviour
         buttonCount = 0;
         sequenceComplete = false;
         awaitingInput = false;
+    }
+
+    public void returnToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
