@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: df47b3a840ad4924e83d546f8d3ef645
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: ProFontWindows
+  fontNames:
+  - ProFontWindows
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 61317654a21530244997144d48a916f8, type: 3}
+  - {fileID: 12800000, guid: ce77ba658a6c9ea41bd04658fc7511ff, type: 3}
+  - {fileID: 12800000, guid: b7912d37e9fbb6746a4af5812e0a2882, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
