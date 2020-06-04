@@ -34,6 +34,10 @@ public class Controller : MonoBehaviour
         foreach (Transform button in GameObject.Find("Buttons").transform)
         {
             buttons.Add(button.GetComponent<ButtonController>());
+            if (Settings.ParkinsonsMode)
+            {
+                button.transform.localScale = new Vector3(2, 2, 1);
+            }
         }
 
         feedback = GameObject.Find("Feedback").GetComponent<TextMeshProUGUI>();
