@@ -17,6 +17,7 @@ public class Controller : MonoBehaviour
     private int currentButton;
     private int buttonCount = 0;
     private int score = 0;
+    private int highScore = 0;
 
     private bool blinkCd = true;
     private bool sequenceComplete = false;
@@ -47,6 +48,8 @@ public class Controller : MonoBehaviour
         bg.color = Color.gray;
         addToOrder();
         currentButton = order.ElementAt(0);
+
+        highScore = PlayerPrefs.GetInt("highScore");
     }
 
     void Update()
@@ -132,6 +135,13 @@ public class Controller : MonoBehaviour
 
     private IEnumerator ojNieByczQ()
     {
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("highScore", highScore);
+        }
+        
+        
         score = 0;
         scoreTm.text = score.ToString();
         feedback.enabled = true;
