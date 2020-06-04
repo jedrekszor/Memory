@@ -4,15 +4,45 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private static bool colorBlindMode = true;
+    private static bool parkinsonsMode = true;
+    private static bool muteMode = true;
+
+    public static bool ColorBlindMode
     {
-        
+        get => colorBlindMode;
+        set => colorBlindMode = value;
+    }
+
+    public static bool ParkinsonsMode
+    {
+        get => parkinsonsMode;
+        set => parkinsonsMode = value;
+    }
+
+    public static bool MuteMode
+    {
+        get => muteMode;
+        set => muteMode = value;
+    }
+
+    public void changeColorBlindMode()
+    {
+        colorBlindMode = !colorBlindMode;
+    }
+
+    public void changeParkinsonsMode()
+    {
+        parkinsonsMode = !parkinsonsMode;
+    }
+
+    public void changeMuteMode()
+    {
+        muteMode = !muteMode;
     }
 }

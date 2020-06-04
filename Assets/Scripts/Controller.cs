@@ -16,6 +16,7 @@ public class Controller : MonoBehaviour
     private List<int> order = new List<int>();
     private int currentButton;
     private int buttonCount = 0;
+    private int score = 0;
 
     private bool blinkCd = true;
     private bool sequenceComplete = false;
@@ -25,8 +26,8 @@ public class Controller : MonoBehaviour
     private bool canNoBlink = true;
 
     private Image bg;
-
-    private TextMeshProUGUI tm;
+    private TextMeshProUGUI feedback;
+    private TextMeshProUGUI scoreTm;
 
     void Start()
     {
@@ -35,8 +36,9 @@ public class Controller : MonoBehaviour
             buttons.Add(button.GetComponent<ButtonController>());
         }
 
-        tm = GameObject.Find("Feedback").GetComponent<TextMeshProUGUI>();
-        tm.enabled = false;
+        feedback = GameObject.Find("Feedback").GetComponent<TextMeshProUGUI>();
+        scoreTm = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        feedback.enabled = false;
         bg = GameObject.Find("BG").GetComponent<Image>();
         bg.color = Color.gray;
         addToOrder();
@@ -114,6 +116,8 @@ public class Controller : MonoBehaviour
 
     private IEnumerator ojTakByczq()
     {
+        score++;
+        scoreTm.text = score.ToString();
         bg.color = Color.gray;
         yield return new WaitForSeconds(byczqTime);
         addToOrder();
@@ -124,10 +128,12 @@ public class Controller : MonoBehaviour
 
     private IEnumerator ojNieByczQ()
     {
-        tm.enabled = true;
+        score = 0;
+        scoreTm.text = score.ToString();
+        feedback.enabled = true;
         bg.color = Color.gray;
         yield return new WaitForSeconds(byczqTime);
-        tm.enabled = false;
+        feedback.enabled = false;
         order.Clear();
         addToOrder();
         buttonCount = 0;
