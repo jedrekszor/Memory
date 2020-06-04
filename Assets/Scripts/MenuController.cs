@@ -14,4 +14,19 @@ public class MenuController : MonoBehaviour
    {
       Application.Quit();
    }
+   
+   public void changeColorBlindMode()
+   {
+      Settings.ColorBlindMode = !Settings.ColorBlindMode;
+   }
+
+   public void changeParkinsonsMode()
+   {
+      Settings.ParkinsonsMode = !Settings.ParkinsonsMode;
+   }
+
+   public void changeMuteMode()
+   {
+      Settings.MuteMode = !Settings.MuteMode;
+   }
 }

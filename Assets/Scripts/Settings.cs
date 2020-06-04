@@ -30,19 +30,4 @@ public class Settings : MonoBehaviour
         get => muteMode;
         set => muteMode = value;
     }
-
-    public void changeColorBlindMode()
-    {
-        colorBlindMode = !colorBlindMode;
-    }
-
-    public void changeParkinsonsMode()
-    {
-        parkinsonsMode = !parkinsonsMode;
-    }
-
-    public void changeMuteMode()
-    {
-        muteMode = !muteMode;
-    }
 }
