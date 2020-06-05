@@ -12,6 +12,9 @@ public class MenuController : MonoBehaviour
     private GameObject settings;
     public Sprite muted;
     public Sprite unmuted;
+    private GameObject tickColorblind;
+    private GameObject tickParkinsons;
+    
 
     private Image muteButton;
     [SerializeField] private TextMeshProUGUI infoText;
@@ -22,6 +25,8 @@ public class MenuController : MonoBehaviour
         settings = GameObject.Find("SettingsMenu");
         muteButton = GameObject.Find("MuteButton").GetComponent<Image>();
         muteText = GameObject.Find("MuteText").GetComponent<TextMeshProUGUI>();
+        tickColorblind = GameObject.Find("TickColorblind");
+        tickParkinsons = GameObject.Find("TickParkinsons");
 
         score = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         score.text = PlayerPrefs.GetInt("highScore").ToString();
@@ -36,6 +41,10 @@ public class MenuController : MonoBehaviour
             muteButton.sprite = unmuted;
             muteText.text = "sound on";
         }
+        tickColorblind.SetActive(PlayerPrefs.GetInt("colorBlindMode") == 1);
+        tickParkinsons.SetActive(PlayerPrefs.GetInt("parkinsonsMode") == 1);
+        
+        
         settings.SetActive(false);
     }
 
@@ -54,10 +63,12 @@ public class MenuController : MonoBehaviour
         if (PlayerPrefs.GetInt("colorBlindMode") == 0)
         {
             PlayerPrefs.SetInt("colorBlindMode", 1);
+            tickColorblind.SetActive(true);
         }
         else
         {
             PlayerPrefs.SetInt("colorBlindMode", 0);
+            tickColorblind.SetActive(false);
         }
     }
 
@@ -66,10 +77,12 @@ public class MenuController : MonoBehaviour
         if (PlayerPrefs.GetInt("parkinsonsMode") == 0)
         {
             PlayerPrefs.SetInt("parkinsonsMode", 1);
+            tickParkinsons.SetActive(true);
         }
         else
         {
             PlayerPrefs.SetInt("parkinsonsMode", 0);
+            tickParkinsons.SetActive(false);
         }
     }
 
