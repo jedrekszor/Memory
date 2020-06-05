@@ -93,12 +93,15 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("mute", 1);
             muteText.text = "sound off";
             muteButton.sprite = muted;
+            AudioController.mute();
+            SoundtrackController.mute();
         }
         else
         {
             PlayerPrefs.SetInt("mute", 0);
             muteText.text = "sound on";
             muteButton.sprite = unmuted;
+            SoundtrackController.startSoundtrack();
         }
     }
 

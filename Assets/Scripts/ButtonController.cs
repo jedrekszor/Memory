@@ -7,17 +7,13 @@ public class ButtonController : MonoBehaviour
 {
     public int id;
     public Color color;
+    public AudioClip beep;
+    
     private Image button; 
     
     void Start()
     {
         button = transform.GetComponentInParent<Image>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void setColor(bool set)
