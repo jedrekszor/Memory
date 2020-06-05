@@ -28,8 +28,15 @@ public class Controller : MonoBehaviour
     private bool canNoBlink = true;
 
     private Image bg;
-    private TextMeshProUGUI feedback;
     private TextMeshProUGUI scoreTm;
+
+    private GameObject feedback;
+    private GameObject newHighScore;
+    private TextMeshProUGUI scoreGameOver;
+    private TextMeshProUGUI highScoreGameOver;
+    
+    private Color cantClick = new Color(157/255f, 171/255f, 189/255f, 1);
+    private Color canClick = new Color(225/255f, 231/255f, 237/255f, 1);
 
     void Start()
     {
@@ -41,12 +48,15 @@ public class Controller : MonoBehaviour
                 button.transform.localScale = new Vector3(1.5f, 1.5f, 1);
             }
         }
-
-        feedback = GameObject.Find("Feedback").GetComponent<TextMeshProUGUI>();
+        newHighScore = GameObject.Find("NewHighScore");
+        feedback = GameObject.Find("Feedback");
+        scoreGameOver = GameObject.Find("GameOverScore").GetComponent<TextMeshProUGUI>();
+        highScoreGameOver = GameObject.Find("GameOverHighScore").GetComponent<TextMeshProUGUI>();
+        
         scoreTm = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
-        feedback.enabled = false;
+        feedback.SetActive(false);
         bg = GameObject.Find("BG").GetComponent<Image>();
-        bg.color = Color.gray;
+        bg.color = cantClick;
         addToOrder();
         currentButton = order.ElementAt(0);
 
@@ -60,7 +70,7 @@ public class Controller : MonoBehaviour
             sequenceComplete = true;
             awaitingInput = true;
             buttonCount = 0;
-            bg.color = new Color(0xDC, 0xDC, 0xDC);
+            bg.color = canClick;
         }
 
         if (!sequenceComplete)
@@ -117,7 +127,7 @@ public class Controller : MonoBehaviour
             }
             else
             {
-                StartCoroutine(ojNieByczQ());
+                ojNieByczQ();
             }
         }
     }
@@ -126,7 +136,7 @@ public class Controller : MonoBehaviour
     {
         score++;
         scoreTm.text = score.ToString();
-        bg.color = new Color(0x9d, 0xab, 0xbd);
+        bg.color = cantClick;
         yield return new WaitForSeconds(byczqTime);
         addToOrder();
         buttonCount = 0;
@@ -134,27 +144,36 @@ public class Controller : MonoBehaviour
         awaitingInput = false;
     }
 
-    private IEnumerator ojNieByczQ()
+    private void ojNieByczQ()
     {
         if (score > highScore)
         {
             highScore = score;
             PlayerPrefs.SetInt("highScore", highScore);
+            newHighScore.SetActive(true);
         }
-        
-        
+        else
+        {
+            newHighScore.SetActive(false);
+        }
+
+        scoreGameOver.text = score.ToString();
+        highScoreGameOver.text = highScore.ToString(); 
+        feedback.SetActive(true);
+    }
+
+    public void restart()
+    {
         score = 0;
         scoreTm.text = score.ToString();
-        feedback.enabled = true;
-        bg.color = new Color(0x9d, 0xab, 0xbd);
-        yield return new WaitForSeconds(byczqTime);
-        feedback.enabled = false;
+        bg.color = cantClick;
         order.Clear();
         addToOrder();
         buttonCount = 0;
         sequenceComplete = false;
         awaitingInput = false;
     }
+    
 
     public void returnToMenu()
     {
