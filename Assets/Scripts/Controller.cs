@@ -30,6 +30,9 @@ public class Controller : MonoBehaviour
     private Image bg;
     private TextMeshProUGUI feedback;
     private TextMeshProUGUI scoreTm;
+    
+    private Color cantClick = new Color(157/255f, 171/255f, 189/255f, 1);
+    private Color canClick = new Color(225/255f, 231/255f, 237/255f, 1);
 
     void Start()
     {
@@ -46,7 +49,7 @@ public class Controller : MonoBehaviour
         scoreTm = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         feedback.enabled = false;
         bg = GameObject.Find("BG").GetComponent<Image>();
-        bg.color = Color.gray;
+        bg.color = cantClick;
         addToOrder();
         currentButton = order.ElementAt(0);
 
@@ -60,7 +63,7 @@ public class Controller : MonoBehaviour
             sequenceComplete = true;
             awaitingInput = true;
             buttonCount = 0;
-            bg.color = new Color(0xDC, 0xDC, 0xDC);
+            bg.color = canClick;
         }
 
         if (!sequenceComplete)
@@ -126,7 +129,7 @@ public class Controller : MonoBehaviour
     {
         score++;
         scoreTm.text = score.ToString();
-        bg.color = new Color(0x9d, 0xab, 0xbd);
+        bg.color = cantClick;
         yield return new WaitForSeconds(byczqTime);
         addToOrder();
         buttonCount = 0;
@@ -141,12 +144,10 @@ public class Controller : MonoBehaviour
             highScore = score;
             PlayerPrefs.SetInt("highScore", highScore);
         }
-        
-        
         score = 0;
         scoreTm.text = score.ToString();
         feedback.enabled = true;
-        bg.color = new Color(0x9d, 0xab, 0xbd);
+        bg.color = cantClick;
         yield return new WaitForSeconds(byczqTime);
         feedback.enabled = false;
         order.Clear();
