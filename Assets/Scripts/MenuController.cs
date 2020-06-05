@@ -4,16 +4,26 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
     private TextMeshProUGUI score;
+    public Sprite muted;
+    public Sprite unmuted;
+
+    [SerializeField] private Image muteButton;
     [SerializeField] private TextMeshProUGUI infoText;
 
     private void Start()
     {
         score = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         score.text = PlayerPrefs.GetInt("highScore").ToString();
+
+        if (PlayerPrefs.GetInt("mute") == 1)
+            muteButton.sprite = muted;
+        else
+            muteButton.sprite = unmuted;
     }
 
     public void Play()
@@ -28,8 +38,7 @@ public class MenuController : MonoBehaviour
 
     public void changeColorBlindMode()
     {
-        Settings.ColorBlindMode = !Settings.ColorBlindMode;
-        if (Settings.ColorBlindMode)
+        if (PlayerPrefs.GetInt("colorBlindMode") == 1)
         {
             PlayerPrefs.SetInt("colorBlindMode", 1);
         }
@@ -41,8 +50,7 @@ public class MenuController : MonoBehaviour
 
     public void changeParkinsonsMode()
     {
-        Settings.ParkinsonsMode = !Settings.ParkinsonsMode;
-        if (Settings.ParkinsonsMode)
+        if (PlayerPrefs.GetInt("parkinsonsMode") == 1)
         {
             PlayerPrefs.SetInt("parkinsonsMode", 1);
         }
@@ -54,14 +62,15 @@ public class MenuController : MonoBehaviour
 
     public void changeMuteMode()
     {
-        Settings.MuteMode = !Settings.MuteMode;
-        if (Settings.MuteMode)
+        if (PlayerPrefs.GetInt("mute") == 0)
         {
             PlayerPrefs.SetInt("mute", 1);
+            muteButton.sprite = muted;
         }
         else
         {
             PlayerPrefs.SetInt("mute", 0);
+            muteButton.sprite = unmuted;
         }
     }
 
