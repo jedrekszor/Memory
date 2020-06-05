@@ -4,23 +4,28 @@ using UnityEngine;
 
 public class SoundtrackController : MonoBehaviour
 {
-    private static AudioSource source;
+    private static SoundtrackController instance;
+    private AudioSource source;
 
     void Start()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
         source = gameObject.GetComponent<AudioSource>();
-        if(PlayerPrefs.GetInt("mute") == 1)
+        if(PlayerPrefs.GetInt("mute") == 0)
             startSoundtrack();
     }
 
-    public static void startSoundtrack()
+    public void startSoundtrack()
     {
         if(PlayerPrefs.GetInt("mute") == 0)
             source.Play();
     }
 
-    public static void mute()
+    public void mute()
     {
         source.Stop();
     }

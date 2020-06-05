@@ -37,11 +37,17 @@ public class Controller : MonoBehaviour
     
     private Color cantClick = new Color(157/255f, 171/255f, 189/255f, 1);
     private Color canClick = new Color(225/255f, 231/255f, 237/255f, 1);
+    
+    private AudioController audio;
+    private SoundtrackController soundtrack;
 
     [SerializeField] private AudioClip newHighScoreClip;
 
     void Start()
     {
+        audio = GameObject.Find("AudioManager").GetComponent<AudioController>();
+        soundtrack = GameObject.Find("Soundtrack").GetComponent<SoundtrackController>();
+        
         foreach (Transform button in GameObject.Find("Buttons").transform)
         {
             buttons.Add(button.GetComponent<ButtonController>());
@@ -99,7 +105,7 @@ public class Controller : MonoBehaviour
     private IEnumerator blink()
     {
         canBlink = false;
-        AudioController.playSound(buttons.ElementAt(currentButton).beep);
+        audio.playSound(buttons.ElementAt(currentButton).beep);
         buttons.ElementAt(currentButton).setColor(true);
         yield return new WaitForSeconds(blinkTime);
         blinkCd = false;
@@ -127,7 +133,7 @@ public class Controller : MonoBehaviour
     {
         if (sequenceComplete && awaitingInput)
         {
-            AudioController.playSound(b.beep);
+            audio.playSound(b.beep);
             StartCoroutine(blinkOnce(b));
             if (b.id == order.ElementAt(buttonCount))
             {
@@ -163,7 +169,7 @@ public class Controller : MonoBehaviour
             highScore = score;
             PlayerPrefs.SetInt("highScore", highScore);
             newHighScore.SetActive(true);
-            AudioController.playSound(newHighScoreClip);
+            audio.playSound(newHighScoreClip);
         }
         else
         {

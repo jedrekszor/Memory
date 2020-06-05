@@ -881,7 +881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   color: {r: 0.92156863, g: 0.2509804, b: 0.20392157, a: 1}
-  beep: {fileID: 8300000, guid: f58f1fcc148c9914fa9cb561ee786703, type: 3}
+  color2: {r: 0.011764706, g: 0.3372549, b: 0.9882353, a: 1}
+  beep: {fileID: 8300000, guid: 33dfa58da57000841b360883573950d8, type: 3}
 --- !u!1 &378767549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,7 +1132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   color: {r: 0.20392157, g: 0.54901963, b: 0.92156863, a: 1}
-  beep: {fileID: 8300000, guid: eef90300e3f48bf48872cbddd63bf5b6, type: 3}
+  color2: {r: 0.9882353, g: 0.7607843, b: 0.011764706, a: 1}
+  beep: {fileID: 8300000, guid: 7eafb62cc9036944295f42397a7f927d, type: 3}
 --- !u!1 &702943554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,7 +1791,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   color: {r: 0.46666667, g: 0.92156863, b: 0.20392157, a: 1}
-  beep: {fileID: 8300000, guid: ddc7dcc90a69eff4b95ff91974a7e0f8, type: 3}
+  color2: {r: 0.36078432, g: 0.19215687, b: 0.08627451, a: 1}
+  beep: {fileID: 8300000, guid: c400cae42a8b44e4dbe19d7dd7366ccd, type: 3}
 --- !u!1 &1181826849
 GameObject:
   m_ObjectHideFlags: 0
@@ -2364,7 +2367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   color: {r: 0.9607843, g: 0.5764706, b: 0.21960784, a: 1}
-  beep: {fileID: 8300000, guid: a5d8f10a587dab845a271e30aaeea02b, type: 3}
+  color2: {r: 0.043137256, g: 0.09411765, b: 0.3019608, a: 1}
+  beep: {fileID: 8300000, guid: 9383c0607397947489bc94968bf76baf, type: 3}
 --- !u!1 &1390743330
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,7 +3405,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   color: {r: 0.92156863, g: 0.8980392, b: 0.20392157, a: 1}
-  beep: {fileID: 8300000, guid: c3e0b4af3080d0e4ca5160e1343cd222, type: 3}
+  color2: {r: 0.6509804, g: 0.6392157, b: 0.6313726, a: 1}
+  beep: {fileID: 8300000, guid: d82f1a69b17454744bc775735fb3e5bc, type: 3}
 --- !u!1 &2048436860
 GameObject:
   m_ObjectHideFlags: 0

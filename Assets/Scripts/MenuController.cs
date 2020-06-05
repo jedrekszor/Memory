@@ -20,8 +20,14 @@ public class MenuController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI infoText;
     private TextMeshProUGUI muteText;
 
+    private AudioController audio;
+    private SoundtrackController soundtrack;
+
     private void Start()
     {
+        audio = GameObject.Find("AudioManager").GetComponent<AudioController>();
+        soundtrack = GameObject.Find("Soundtrack").GetComponent<SoundtrackController>();
+        
         settings = GameObject.Find("SettingsMenu");
         muteButton = GameObject.Find("MuteButton").GetComponent<Image>();
         muteText = GameObject.Find("MuteText").GetComponent<TextMeshProUGUI>();
@@ -93,15 +99,15 @@ public class MenuController : MonoBehaviour
             PlayerPrefs.SetInt("mute", 1);
             muteText.text = "sound off";
             muteButton.sprite = muted;
-            AudioController.mute();
-            SoundtrackController.mute();
+            audio.mute();
+            soundtrack.mute();
         }
         else
         {
             PlayerPrefs.SetInt("mute", 0);
             muteText.text = "sound on";
             muteButton.sprite = unmuted;
-            SoundtrackController.startSoundtrack();
+            soundtrack.startSoundtrack();
         }
     }
 

@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    private static AudioSource source;
+    private AudioSource source;
+    private static AudioController instance;
 
     void Start()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Object.Destroy(gameObject);
+        
         DontDestroyOnLoad(gameObject);
         source = gameObject.GetComponent<AudioSource>();
     }
 
-    public static void playSound(AudioClip clip)
+    public void playSound(AudioClip clip)
     {
         if (PlayerPrefs.GetInt("mute") == 0)
         {
@@ -21,7 +27,7 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public static void mute()
+    public void mute()
     {
         source.Stop();
     }
