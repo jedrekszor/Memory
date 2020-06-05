@@ -60,7 +60,7 @@ public class Controller : MonoBehaviour
             sequenceComplete = true;
             awaitingInput = true;
             buttonCount = 0;
-            bg.color = Color.white;
+            bg.color = new Color(0xDC, 0xDC, 0xDC);
         }
 
         if (!sequenceComplete)
@@ -126,7 +126,7 @@ public class Controller : MonoBehaviour
     {
         score++;
         scoreTm.text = score.ToString();
-        bg.color = Color.gray;
+        bg.color = new Color(0x9d, 0xab, 0xbd);
         yield return new WaitForSeconds(byczqTime);
         addToOrder();
         buttonCount = 0;
@@ -146,7 +146,7 @@ public class Controller : MonoBehaviour
         score = 0;
         scoreTm.text = score.ToString();
         feedback.enabled = true;
-        bg.color = Color.gray;
+        bg.color = new Color(0x9d, 0xab, 0xbd);
         yield return new WaitForSeconds(byczqTime);
         feedback.enabled = false;
         order.Clear();
@@ -158,6 +158,11 @@ public class Controller : MonoBehaviour
 
     public void returnToMenu()
     {
+        if (score > highScore)
+        {
+            highScore = score;
+            PlayerPrefs.SetInt("highScore", highScore);
+        }
         SceneManager.LoadScene("Menu");
     }
 }
