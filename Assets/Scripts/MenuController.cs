@@ -9,21 +9,34 @@ using UnityEngine.UI;
 public class MenuController : MonoBehaviour
 {
     private TextMeshProUGUI score;
+    private GameObject settings;
     public Sprite muted;
     public Sprite unmuted;
 
-    [SerializeField] private Image muteButton;
+    private Image muteButton;
     [SerializeField] private TextMeshProUGUI infoText;
+    private TextMeshProUGUI muteText;
 
     private void Start()
     {
+        settings = GameObject.Find("SettingsMenu");
+        muteButton = GameObject.Find("MuteButton").GetComponent<Image>();
+        muteText = GameObject.Find("MuteText").GetComponent<TextMeshProUGUI>();
+
         score = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         score.text = PlayerPrefs.GetInt("highScore").ToString();
 
         if (PlayerPrefs.GetInt("mute") == 1)
+        {
             muteButton.sprite = muted;
+            muteText.text = "sound off";
+        }
         else
+        {
             muteButton.sprite = unmuted;
+            muteText.text = "sound on";
+        }
+        settings.SetActive(false);
     }
 
     public void Play()
@@ -38,7 +51,7 @@ public class MenuController : MonoBehaviour
 
     public void changeColorBlindMode()
     {
-        if (PlayerPrefs.GetInt("colorBlindMode") == 1)
+        if (PlayerPrefs.GetInt("colorBlindMode") == 0)
         {
             PlayerPrefs.SetInt("colorBlindMode", 1);
         }
@@ -50,7 +63,7 @@ public class MenuController : MonoBehaviour
 
     public void changeParkinsonsMode()
     {
-        if (PlayerPrefs.GetInt("parkinsonsMode") == 1)
+        if (PlayerPrefs.GetInt("parkinsonsMode") == 0)
         {
             PlayerPrefs.SetInt("parkinsonsMode", 1);
         }
@@ -65,11 +78,13 @@ public class MenuController : MonoBehaviour
         if (PlayerPrefs.GetInt("mute") == 0)
         {
             PlayerPrefs.SetInt("mute", 1);
+            muteText.text = "sound off";
             muteButton.sprite = muted;
         }
         else
         {
             PlayerPrefs.SetInt("mute", 0);
+            muteText.text = "sound on";
             muteButton.sprite = unmuted;
         }
     }
