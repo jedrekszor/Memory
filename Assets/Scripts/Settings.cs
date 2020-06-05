@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class Settings : MonoBehaviour
 {
+    private static bool colorBlindMode;
+    private static bool parkinsonsMode;
+    private static bool muteMode;
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        Debug.Log(colorBlindMode);
-        Debug.Log(parkinsonsMode);
-        Debug.Log(muteMode);
+        colorBlindMode = PlayerPrefs.GetInt("colorBlindMode") == 1;
+        parkinsonsMode = PlayerPrefs.GetInt("parkinsonsMode") == 1;
+        muteMode = PlayerPrefs.GetInt("mute") == 1;
     }
 
-    private static bool colorBlindMode = false;
-    private static bool parkinsonsMode = false;
-    private static bool muteMode = false;
 
     public static bool ColorBlindMode
     {
