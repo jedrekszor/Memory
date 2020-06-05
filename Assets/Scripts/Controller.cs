@@ -36,7 +36,7 @@ public class Controller : MonoBehaviour
         foreach (Transform button in GameObject.Find("Buttons").transform)
         {
             buttons.Add(button.GetComponent<ButtonController>());
-            if (Settings.ParkinsonsMode)
+            if (PlayerPrefs.GetInt("parkinsonsMode") == 1)
             {
                 button.transform.localScale = new Vector3(2, 2, 1);
             }
