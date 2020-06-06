@@ -64,11 +64,18 @@ public class Controller : MonoBehaviour
         scoreTm = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
         feedback.SetActive(false);
         bg = GameObject.Find("BG").GetComponent<Image>();
-        bg.color = cantClick;
         addToOrder();
         currentButton = order.ElementAt(0);
 
         highScore = PlayerPrefs.GetInt("highScore");
+        
+        
+        sequenceComplete = true;
+        awaitingInput = true;
+        buttonCount = 0;
+        bg.color = canClick;
+
+        StartCoroutine(startByczq());
     }
 
     void Update()
@@ -150,14 +157,26 @@ public class Controller : MonoBehaviour
         }
     }
 
+
+    private IEnumerator startByczq()
+    {
+        yield return new WaitForSeconds(byczqTime);
+        bg.color = cantClick;
+        buttonCount = 0;
+        yield return new WaitForSeconds(0.5f);
+        sequenceComplete = false;
+        awaitingInput = false;
+    }
+
     private IEnumerator ojTakByczq()
     {
         score++;
         scoreTm.text = score.ToString();
-        bg.color = cantClick;
         yield return new WaitForSeconds(byczqTime);
+        bg.color = cantClick;
         addToOrder();
         buttonCount = 0;
+        yield return new WaitForSeconds(0.5f);
         sequenceComplete = false;
         awaitingInput = false;
     }
