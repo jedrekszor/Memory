@@ -7,24 +7,26 @@ public class ButtonController : MonoBehaviour
 {
     public int id;
     public Color color;
-    private Image button; 
+    public Color color2;
+    public AudioClip beep;
     
+    private Image button;
+    private bool colorblind;
+
     void Start()
     {
         button = transform.GetComponentInParent<Image>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        colorblind = PlayerPrefs.GetInt("colorBlindMode") == 1;
     }
 
     public void setColor(bool set)
     {
         if (set)
         {
-            button.color = color;
+            if (colorblind)
+                button.color = color2;
+            else
+                button.color = color;
         }
         else
         {
