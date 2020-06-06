@@ -113,11 +113,11 @@ public class MenuController : MonoBehaviour
 
     public void colorblindInfo()
     {
-        infoText.text = "Colorblind info";
+        infoText.text = "Colors of the in-game buttons are easier to distinguish for colorblind people.";
     }
 
     public void parkinsonsInfo()
     {
-        infoText.text = "Parkinsons info";
+        infoText.text = "Size of the in-game buttons is bigger making it easier for people with parkinson's disease to hit.";
     }
 }
